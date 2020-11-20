@@ -21,7 +21,7 @@
 		</tr>
 		</c:forEach>
 		<tr>
-			<td colspan="2"><a href="save_view">등록</a></td>
+			<td colspan="2"><a href="save_view">등록</a>총 글 : ${count }</td>
 		</tr>
 	</table>
 </div>
