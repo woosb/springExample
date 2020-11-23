@@ -13,7 +13,7 @@ public class MyServiceImple implements MyService{
 	}
 	
 	@Autowired
-	@Qualifier("testDAO")
+//	@Qualifier("testDAO")
 	private TestDAO dao;
 	
 	@Override
