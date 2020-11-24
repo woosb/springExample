@@ -48,6 +48,10 @@
 		update mvc_board set step = step + 1 where idgroup = #{idgroup} and step > #{step}
 	</update>
 	<insert id="registerReply">
-		insert into mvc_board(id, title, content, savedate, step, indent, idgroup) values(mvc_seq.nextval, #{title}, #{content}, #{savedate}, #{step}, #{indent}, #{idgroup})
+		insert into 
+		mvc_board
+			(id, title, content, savedate, step, indent, idgroup, name) 
+		values
+			(mvc_seq.nextval, #{title}, #{content}, #{savedate}, #{step}, #{indent}, #{idgroup}, #{name})
 	</insert>
 </mapper>
