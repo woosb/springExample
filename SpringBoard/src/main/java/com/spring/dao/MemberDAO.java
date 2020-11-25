@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.spring.dto.MemberDTO;
+import com.spring.dto.MemberLogDTO;
 
 @Repository
 public class MemberDAO {
@@ -29,5 +30,20 @@ public class MemberDAO {
 	
 	public List<MemberDTO> getMemberList() {
 		return sqlSession.selectList(namespace+".getMemberList");
+	}
+	
+	public List<MemberLogDTO> getLog(){
+		return sqlSession.selectList(namespace+".getLog");
+	}
+	
+	public int loginLog(MemberLogDTO dto) {
+		return sqlSession.insert(namespace+".loginLog", dto);
+	}
+	public int logoutLog(MemberLogDTO dto) {
+		return sqlSession.update(namespace+".logoutLog", dto);
+	}
+	
+	public MemberLogDTO getLoginMember(String id) {
+		return sqlSession.selectOne(namespace+".getLoginMember", id);
 	}
 }

@@ -5,11 +5,14 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.spring.dao.MemberDAO;
 import com.spring.dto.MemberDTO;
+import com.spring.dto.MemberLogDTO;
 
 @Service
 public class MemberServiceImpl implements MemberService{
@@ -47,5 +50,10 @@ public class MemberServiceImpl implements MemberService{
 	public MemberDTO getMember(MemberDTO dto) {
 		return dao.getMember(dto);
 	}
-	
+
+	@Override
+	public List<MemberLogDTO> getLog() {
+		return dao.getLog();
+	}
+
 }

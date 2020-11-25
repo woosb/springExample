@@ -60,7 +60,6 @@ public class TestController {
 		try {
 			date = new Date( form.parse(myDate).getTime() );
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		System.out.println(date);

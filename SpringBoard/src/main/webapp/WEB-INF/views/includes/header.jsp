@@ -40,6 +40,9 @@ CARE &nbsp; LAB
 			<div style="margin-right : 10px;">
 				<a href="/member/list">memberList</a>
 			</div>
+			<div style="margin-right : 10px;">
+				<a href="/member/log">로그보기</a>
+			</div>
 		</div>
 	<hr>
 </div>

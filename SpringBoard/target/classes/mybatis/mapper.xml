@@ -28,7 +28,7 @@
 		select * from mvc_board order by idgroup desc, step asc
 	</select>
 	
-	<select id="getBoard" resultType="com.spring.dto.BoardDTO">
+	<select id="getBoard" resultType="dto">
 		select * from mvc_board where id=#{id}
 	</select>
 	
@@ -54,4 +54,20 @@
 		values
 			(mvc_seq.nextval, #{title}, #{content}, #{savedate}, #{step}, #{indent}, #{idgroup}, #{name})
 	</insert>
+	
+	<select id="getLog" resultType="com.spring.dto.MemberLogDTO">
+		select * from userlog order by num desc
+	</select>
+	
+	<insert id="loginLog">
+		insert into userlog(num, id, starttime, endtime) values(time_number.nextval, #{id}, #{starttime},' ')
+	</insert>
+
+	<update id="logoutLog">
+		update userlog set endtime = #{endtime}, resulttime=#{resulttime} where id = #{id} and endtime=' '
+	</update>
+	
+	<select id="getLoginMember" resultType="com.spring.dto.MemberLogDTO">
+		select * from userlog where id=#{id} and endtime=' '
+	</select>
 </mapper>

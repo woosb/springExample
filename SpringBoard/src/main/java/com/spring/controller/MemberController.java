@@ -1,6 +1,5 @@
 package com.spring.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -41,7 +40,7 @@ public class MemberController {
 	}
 	
 	@PostMapping("/login")
-	public void login(MemberDTO dto, HttpServletRequest request, Model model) {
+	public void login_(MemberDTO dto, HttpServletRequest request, Model model) {
 		int result = service.login(dto, request);
 		if(result == 1) {
 			model.addAttribute("login","success");
@@ -49,7 +48,7 @@ public class MemberController {
 			model.addAttribute("login", "fail");
 		}
 	}
-	
+
 	@GetMapping("logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
@@ -66,5 +65,10 @@ public class MemberController {
 		MemberDTO dto = new MemberDTO();
 		dto.setId(id);
 		model.addAttribute("dto",service.getMember(dto));
+	}
+	
+	@GetMapping("log")
+	public void memberLog(Model model) {
+		model.addAttribute("log", service.getLog());
 	}
 }
