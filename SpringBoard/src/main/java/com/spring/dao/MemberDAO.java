@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.spring.dto.Criteria;
 import com.spring.dto.MemberDTO;
 import com.spring.dto.MemberLogDTO;
 
@@ -32,8 +33,8 @@ public class MemberDAO {
 		return sqlSession.selectList(namespace+".getMemberList");
 	}
 	
-	public List<MemberLogDTO> getLog(){
-		return sqlSession.selectList(namespace+".getLog");
+	public List<MemberLogDTO> getLog(Criteria cri){
+		return sqlSession.selectList(namespace+".getLog", cri);
 	}
 	
 	public int loginLog(MemberLogDTO dto) {
@@ -45,5 +46,9 @@ public class MemberDAO {
 	
 	public MemberLogDTO getLoginMember(String id) {
 		return sqlSession.selectOne(namespace+".getLoginMember", id);
+	}
+	
+	public Integer getLogCount() {
+		return sqlSession.selectOne(namespace+".getLogCount");
 	}
 }

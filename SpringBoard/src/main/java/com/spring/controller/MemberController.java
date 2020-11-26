@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.spring.dto.Criteria;
 import com.spring.dto.MemberDTO;
+import com.spring.dto.PageDTO;
 import com.spring.service.MemberService;
 
 @Controller
@@ -68,7 +70,15 @@ public class MemberController {
 	}
 	
 	@GetMapping("log")
-	public void memberLog(Model model) {
-		model.addAttribute("log", service.getLog());
+	public void memberLog(Model model, Criteria cri) {
+		int total = service.getLogCount();
+
+		System.out.println(cri.toString());
+		System.out.println("total : " + total);
+		
+		PageDTO pageMaker = new PageDTO(cri, total);
+		model.addAttribute("pageMaker", pageMaker);
+		
+		model.addAttribute("log", service.getLog(cri));
 	}
 }

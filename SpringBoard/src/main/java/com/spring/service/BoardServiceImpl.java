@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.spring.dao.BoardDAO;
 import com.spring.dto.BoardDTO;
+import com.spring.dto.Criteria;
 
 @Service
 public class BoardServiceImpl implements BoardService{
@@ -28,8 +29,8 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public List<BoardDTO> getList() {
-		return dao.getList(); 
+	public List<BoardDTO> getList(Criteria cri) {
+		return dao.getList(cri); 
 	}
 
 	@Override
@@ -62,7 +63,12 @@ public class BoardServiceImpl implements BoardService{
 		dto.setSavedate(new Date());
 		dto.setIndent(dto.getIndent()+1);
 		dto.setStep(dto.getStep()+1);
-		System.out.println(dto.toString());
 		return dao.registerReply(dto);
 	}
+
+	@Override
+	public Integer getTotal() {
+		return dao.getTotal();
+	}
+	
 }

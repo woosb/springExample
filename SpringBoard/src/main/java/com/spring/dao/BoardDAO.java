@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.spring.dto.BoardDTO;
+import com.spring.dto.Criteria;
 
 @Repository
 public class BoardDAO {
@@ -19,8 +20,8 @@ public class BoardDAO {
 		return sqlSession.insert(namespace+".registerBoard",dto);
 	}
 	
-	public List<BoardDTO> getList(){
-		return sqlSession.selectList(namespace+".getBoardList");
+	public List<BoardDTO> getList(Criteria cri){
+		return sqlSession.selectList(namespace+".getBoardList", cri);
 	}
 	
 	public BoardDTO getBoard(String id) {
@@ -45,5 +46,9 @@ public class BoardDAO {
 	
 	public int registerReply(BoardDTO dto) {
 		return sqlSession.insert(namespace+".registerReply", dto);
+	}
+	
+	public Integer getTotal() {
+		return sqlSession.selectOne(namespace+".getTotal");
 	}
 }

@@ -41,6 +41,9 @@
 			<td><a href="/board/register">글 작성</a></td>
 		</tr>
 	</table>
+	<c:forEach var="page" begin="${pageMaker.startPage }" end="${pageMaker.endPage }">
+		<a href="/board/list?pageNum=${page }"><c:out value="${page }"/></a>
+	</c:forEach>
 </div>
 <%@ include file="../includes/footer.jsp" %>
 </body>

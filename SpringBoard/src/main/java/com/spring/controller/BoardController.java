@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.spring.dto.BoardDTO;
+import com.spring.dto.Criteria;
+import com.spring.dto.PageDTO;
 import com.spring.service.BoardService;
 
 @Controller
@@ -27,10 +29,14 @@ public class BoardController {
 	BoardService service;
 	
 	@GetMapping("/list")
-	public void list(Model model) {
-		List<BoardDTO> list = service.getList();
+	public void list(Model model,  Criteria cri) {
+		int total = service.getTotal();
+		PageDTO pageMaker = new PageDTO(cri, total);
+		List<BoardDTO> list = service.getList(cri);
 		model.addAttribute("list", list);
+		model.addAttribute("pageMaker", pageMaker);
 	}
+	
 	@GetMapping("/register")
 	public void register() {
 		

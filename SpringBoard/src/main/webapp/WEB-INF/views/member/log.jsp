@@ -28,6 +28,9 @@
 			</tr>
 		</c:forEach>
 	</table>
+	<c:forEach var="page" begin="${pageMaker.startPage }" end="${pageMaker.endPage }">
+		<a href="/member/log?pageNum=${page }"><c:out value="${page }"/></a>
+	</c:forEach>
 </div>
 <%@ include file="../includes/footer.jsp" %>
 </body>

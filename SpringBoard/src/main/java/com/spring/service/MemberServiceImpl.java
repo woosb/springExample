@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.spring.dao.MemberDAO;
+import com.spring.dto.Criteria;
 import com.spring.dto.MemberDTO;
 import com.spring.dto.MemberLogDTO;
 
@@ -52,8 +53,12 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public List<MemberLogDTO> getLog() {
-		return dao.getLog();
+	public List<MemberLogDTO> getLog(Criteria cri) {
+		return dao.getLog(cri);
 	}
 
+	@Override
+	public Integer getLogCount() {
+		return dao.getLogCount();
+	}
 }

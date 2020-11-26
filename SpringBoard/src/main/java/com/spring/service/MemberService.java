@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.spring.dto.Criteria;
 import com.spring.dto.MemberDTO;
 import com.spring.dto.MemberLogDTO;
 
@@ -12,5 +13,6 @@ public interface MemberService {
 	public int login(MemberDTO dto, HttpServletRequest request);
 	public List<MemberDTO> getMemberList();
 	public MemberDTO getMember(MemberDTO dto);
-	public List<MemberLogDTO> getLog();
+	public List<MemberLogDTO> getLog(Criteria cri);
+	public Integer getLogCount();
 }

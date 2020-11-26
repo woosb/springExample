@@ -84,7 +84,6 @@ public class MemberLog {
 			sum -= time * Math.pow(60, cnt--);
 		}
 
-		System.out.println(sum/3600 + " 시간");
 		return sum;
 	}
 }
