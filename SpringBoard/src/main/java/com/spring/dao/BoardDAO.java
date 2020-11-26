@@ -11,7 +11,7 @@ import com.spring.dto.Criteria;
 
 @Repository
 public class BoardDAO {
-	final String namespace="com.spring.mybatis.myMapper";
+	final String namespace="com.spring.board.myMapper";
 	
 	@Autowired
 	SqlSession sqlSession;

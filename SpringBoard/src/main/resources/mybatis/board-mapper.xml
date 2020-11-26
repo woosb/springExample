@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.spring.board.myMapper">
+
+	<select id="getTotal" resultType="Integer">
+		select count(*) from mvc_board
+	</select>
+	
+	<insert id="registerBoard">
+		insert into 
+		mvc_board
+			(id, title, content, savedate, name, idgroup, step, indent, hit) 
+		values
+			(mvc_seq.nextval, #{title}, #{content}, #{savedate}, #{name} , mvc_seq.currval, #{step}, #{indent}, #{hit})
+	</insert>
+	
+	<select id="getBoardList" resultType="com.spring.dto.BoardDTO">
+		<![CDATA[
+		select * from (
+			select /*+ INDEX_DESC(mvc_board pk_board) */
+				rownum as rn, id, name, title, content, savedate, hit, idgroup, step, indent
+                from 
+				mvc_board
+			 where 
+			 	rownum < #{pageNum} * #{amount}
+			 ) 
+		where 
+			rn > (#{pageNum}-1) * #{amount}
+		order by idgroup desc, step asc
+        ]]>
+	</select>
+	
+	<select id="getBoard" resultType="dto">
+		select * from mvc_board where id=#{id}
+	</select>
+	
+	<update id="updateBoard">
+		update mvc_board set title = #{title}, content = #{content}, savedate = #{savedate} where id = #{id}
+	</update>
+	
+	<delete id="deleteBoard">
+		delete from mvc_board where id = #{id}
+	</delete>
+	
+	<update id="upHit">
+		update mvc_board set hit = hit + 1 where id=#{id}
+	</update>
+	
+	<update id="upStep">
+		update mvc_board set step = step + 1 where idgroup = #{idgroup} and step > #{step}
+	</update>
+	<insert id="registerReply">
+		insert into 
+		mvc_board
+			(id, title, content, savedate, step, indent, idgroup, name) 
+		values
+			(mvc_seq.nextval, #{title}, #{content}, #{savedate}, #{step}, #{indent}, #{idgroup}, #{name})
+	</insert>
+
+</mapper>
