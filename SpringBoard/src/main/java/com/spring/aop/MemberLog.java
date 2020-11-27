@@ -32,7 +32,7 @@ public class MemberLog {
 		MemberLogDTO log = new MemberLogDTO();
 		log.setStarttime(starttime);
 		log.setId(dto.getId());
-		
+			
 		dao.loginLog(log);
 	}
 
