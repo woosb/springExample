@@ -3,6 +3,7 @@ package com.spring.dto;
 public class MemberDTO {
 	private String id;
 	private String pw;
+	private String addr;
 	public String getId() {
 		return id;
 	}
@@ -14,6 +15,12 @@ public class MemberDTO {
 	}
 	public void setPw(String pw) {
 		this.pw = pw;
+	}
+	public String getAddr() {
+		return addr;
+	}
+	public void setAddr(String addr) {
+		this.addr = addr;
 	}
 	
 }

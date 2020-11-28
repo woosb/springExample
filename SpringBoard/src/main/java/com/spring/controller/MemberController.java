@@ -31,9 +31,15 @@ public class MemberController {
 	}
 	
 	@PostMapping("/register")
-	public void register(MemberDTO dto, Model model) {
+	public String register(MemberDTO dto, Model model) {
 		int result = service.register(dto);
-		model.addAttribute("result" , result);
+		System.out.println(result);
+		if(result == 1) {
+			return "redirect:/";
+		}else {
+			model.addAttribute(result);
+			return "redirect:/member/register";
+		}
 	}	
 
 	@GetMapping("/login")
@@ -62,6 +68,7 @@ public class MemberController {
 		List<MemberDTO> list =  service.getMemberList();
 		model.addAttribute("list", list);
 	}
+	
 	@GetMapping("detail")
 	public void memberDetail(Model model, @RequestParam("id") String id) {
 		MemberDTO dto = new MemberDTO();
@@ -72,9 +79,6 @@ public class MemberController {
 	@GetMapping("log")
 	public void memberLog(Model model, Criteria cri) {
 		int total = service.getLogCount();
-
-		System.out.println(cri.toString());
-		System.out.println("total : " + total);
 		
 		PageDTO pageMaker = new PageDTO(cri, total);
 		model.addAttribute("pageMaker", pageMaker);

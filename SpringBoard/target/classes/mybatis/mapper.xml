@@ -6,7 +6,7 @@
 <mapper namespace="com.spring.mybatis.myMapper">
 	
 	<insert id="register" parameterType="com.spring.dto.MemberDTO">
-		insert into member values(#{id}, #{pw})
+		insert into member values(#{id}, #{pw}, #{addr})
 	</insert>
 	<select id="getMember" resultType="com.spring.dto.MemberDTO">
 		select * from member where id = #{id}
