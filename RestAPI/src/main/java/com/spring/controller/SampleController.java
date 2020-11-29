@@ -53,7 +53,6 @@ public class SampleController {
 			vo.setMno(i);
 			list.add(vo);
 		}
-		
 		return list;
 	}
 	

@@ -172,13 +172,6 @@
 			<scope>provided</scope>
 		</dependency>
 		
-		<!-- mysql --> 
-		<dependency>
-			<groupId>mysql</groupId> 
-			<artifactId>mysql-connector-java</artifactId>
-			<version>8.0.13</version> 
-		</dependency>
-		
 		<!-- jackson.core -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
@@ -227,9 +220,6 @@
 		</dependency>
 		
 		<!-- spring security -->
-		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-taglibs -->
-		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
-		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-web -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-web</artifactId>
