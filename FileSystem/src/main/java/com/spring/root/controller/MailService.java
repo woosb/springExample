@@ -22,7 +22,7 @@ public class MailService {
 			MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
 			messageHelper.setSubject(subject);
 			messageHelper.setTo(to);
-			messageHelper.setText(body, true);
+			messageHelper.setText(body, true); //html코드를 텍스트형식이 아니라 실제 html문서형식으로 보낼 수 있다.
 			mailSender.send(message);
 		}catch(Exception e) {
 			e.printStackTrace(); 
@@ -48,6 +48,7 @@ public class MailService {
 		int num;
 		while(str.length() != 20){
 			num = ran.nextInt(75) + 48;
+			//숫자 || 대문자 || 소문자
 			if( (num >= 48 && num <= 57) || (num >= 65 && num <= 90) || (num >=97 && num <= 122) ) {
 				str += (char)num;
 			}else {

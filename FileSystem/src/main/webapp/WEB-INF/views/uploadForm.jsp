@@ -14,7 +14,7 @@
 	<form action="${path }/upload" method="post" enctype="multipart/form-data">
 		<label>아이디 : </label><input type="text" name="id"><br>
 		<label>이름 : </label><input type="text" name="name"><br>
-		<input type="file" name="file">
+		<input type="file" name="file" multiple>
 		<input type="submit" value="업로드">	
 	</form> 
 </div>

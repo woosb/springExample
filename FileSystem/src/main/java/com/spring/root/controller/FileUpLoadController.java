@@ -12,8 +12,12 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -32,14 +36,15 @@ public class FileUpLoadController {
 	 * multipart는 폼데이터가 여러 부분으로 나뉘어 서버로 전송되는 것을 의미합니다.
 	 * */
 	@RequestMapping("/upload")
-	public ModelAndView upload(MultipartHttpServletRequest mul, HttpServletResponse response){
+	public String upload(MultipartHttpServletRequest mul, HttpServletResponse response, Model model){
 		try{
 			mul.setCharacterEncoding("utf-8");
 		}catch(UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-		Map map = new HashMap();
-		Enumeration enu = mul.getParameterNames();
+		Map<String, Object> map = new HashMap<String, Object>();
+		Enumeration<String> enu = mul.getParameterNames();
+		
 		while(enu.hasMoreElements()){
 			String name = (String)enu.nextElement();
 			String value = mul.getParameter(name);
@@ -47,12 +52,15 @@ public class FileUpLoadController {
 			map.put(name, value);
 		}
 		
-		List fileList = fileProcess(mul);
+		List<String> fileList = fileProcess(mul);
 		map.put("fileList",  fileList);
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("map", map);
-		mv.setViewName("result");
-		return mv;
+//		ModelAndView mv = new ModelAndView();
+//		mv.addObject("map", map);
+//		mv.setViewName("result");
+//		
+//		return mv;
+		model.addAttribute("map", map);
+		return "result";
 	}
 	
 	private List<String> fileProcess(MultipartHttpServletRequest mul){
@@ -62,6 +70,9 @@ public class FileUpLoadController {
 		Iterator<String> fileNames = mul.getFileNames();
 		while(fileNames.hasNext()) {
 			String fileName = fileNames.next();//name을 가져온다(file1, 2..)
+			
+			System.out.println(fileName);
+			
 			MultipartFile mFile = mul.getFile(fileName);
 			String originFile = mFile.getOriginalFilename();//실제 파일명
 			fileList.add(originFile);//실제 파일명을 리스트에 저장
@@ -81,5 +92,57 @@ public class FileUpLoadController {
 			}
 		}
 		return fileList;
+	}
+	
+	@GetMapping("/uploadForm2")
+	public void uploadForm() {
+		
+	}
+	
+	@PostMapping("/uploadFormAction")
+	public void uploadFormPost(MultipartFile[] uploadFile, Model model) {
+		
+		for(MultipartFile multipartFile : uploadFile) {
+			System.out.println("====================================");
+			System.out.println("Upload File Name : " + multipartFile.getOriginalFilename());
+			System.out.println("Upload File Size : " + multipartFile.getSize());
+			
+			File saveFile = new File(IMAGE_REPO, multipartFile.getOriginalFilename());
+			
+			try {
+				multipartFile.transferTo(saveFile);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	@GetMapping("/uploadAjax")
+	public void uploadAjax() {
+		
+	}
+	
+	@PostMapping("/uploadAjaxAction")
+	public void uploadAjaxPost(MultipartFile[] uploadFile) {
+		System.out.println("update ajax post........");
+		String uploadFolder = IMAGE_REPO;
+		for(MultipartFile multipartFile : uploadFile) {
+			System.out.println("====================================");
+			System.out.println("Upload File Name : " + multipartFile.getOriginalFilename());
+			System.out.println("Upload File Size : " + multipartFile.getSize());
+			String uploadFilename = multipartFile.getOriginalFilename();
+			
+			System.out.println("original file name : " + uploadFilename);
+			
+			uploadFilename = uploadFilename.substring(uploadFilename.lastIndexOf("\\") +1);
+			System.out.println("only file name : " + uploadFilename);
+			File saveFile = new File(IMAGE_REPO, uploadFilename);
+			
+			try {
+				multipartFile.transferTo(saveFile);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
 	}
 }

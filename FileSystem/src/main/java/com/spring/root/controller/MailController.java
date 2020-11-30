@@ -20,13 +20,14 @@ public class MailController {
 	MailService service;
 	
 	@GetMapping("/sendmail")
-	public void semdSimpleMail(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	public void sendSimpleMail(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
-		service.sendMail("woosb0115@nate.com", "테스트 메일(제목)","안녕하세요");
+		service.sendMail("wooyh0115@naver.com", "테스트 메일(제목)","안녕하세요");
 		out.print("메일을 보냈습니다.");
 	}
+	
 	@GetMapping("/sendmail2")
 	public void semdSimpleMail2(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		request.setCharacterEncoding("utf-8");

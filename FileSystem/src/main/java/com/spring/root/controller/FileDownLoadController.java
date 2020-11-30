@@ -23,7 +23,7 @@ public class FileDownLoadController {
 		response.addHeader("Content-disposition", "attachment; fileName=" + imageFileName);
 		
 		FileInputStream in = new FileInputStream(file);
-		byte[] buffer = new byte[1024*1024*10];
+		byte[] buffer = new byte[1024*1024*10]; //10MB
 		while(true) {
 			int count = in.read(buffer);
 			if(count == -1) {
