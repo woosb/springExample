@@ -1,5 +1,5 @@
 package com.spring.dao;
 
-public class MemberDAO {
-
+public interface MemberDAO {
+	
 }

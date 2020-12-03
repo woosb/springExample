@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.dao.BoardDAO">
+	<insert id="register">
+		insert into membership values(#{id}, #{pw}, #{addr})
+	</insert>
+	<select id="login" resultType="com.spring.dto.MemberDto">
+		select * from membership where id=#{id}
+	</select>
+	<delete id="delete">
+		delete from membership where id=#{id}
+	</delete>
+</mapper>
