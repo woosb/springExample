@@ -26,11 +26,6 @@ public class JdbcConfig {
 	
 	@Bean
 	public DriverManagerDataSource dataSource() {
-		System.out.println(driverClassName);
-		System.out.println(url);
-		System.out.println(username);
-		System.out.println(password);
-		
 		DriverManagerDataSource ds = new DriverManagerDataSource();
 		ds.setDriverClassName(driverClassName);
 		ds.setUrl(url);

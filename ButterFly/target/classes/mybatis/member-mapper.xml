@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.member.mapper">
+	<select id="login" resultType="com.spring.dto.MemberDTO">
+		select * from membership where id=#{id}
+	</select>
+	
+	<insert id="join">
+		insert into membership(id, pw, addr) 
+		values(#{id}, #{pw}, #{addr})
+	</insert>
+	
+	<select id="memberInfo" resultType="com.spring.dto.MemberDTO">
+		select * from membership
+	</select>
+	
+	<insert id="setStartTime">
+		insert into 
+		userlog(num, id, startTime) 
+		values(time_number.nextval, #{id}, sysdate)
+	</insert>
+	
+	<update id="setEndTime">
+		update userlog set endtime = sysdate where id=#{id}
+	</update>
+	
+	<select id="getLog" resultType="com.spring.dto.UserLogDTO">
+		select * from userlog
+	</select>
+</mapper>
