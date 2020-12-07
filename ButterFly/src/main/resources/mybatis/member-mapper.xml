@@ -30,4 +30,16 @@
 	<select id="getLog" resultType="com.spring.dto.UserLogDTO">
 		select * from userlog
 	</select>
+	
+	<update id="modifyPw">
+		update membership set pw = #{pw} where id=#{id}
+	</update>
+	
+	<select id="getLogCount" resultType="Integer">
+		select count(*) from userlog
+	</select>
+	
+	<select id="getSecWithMin" resultType="Integer">
+		select to_char(startTime,'SS') from userlog where to_char(startTime,'MI') = #{min}
+	</select>
 </mapper>

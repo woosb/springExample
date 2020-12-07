@@ -11,4 +11,5 @@ public interface MemberService {
 	public int join(MemberDTO dto);
 	public List<MemberDTO> memberInfo();
 	public void memberList(Model model);
+	public int modifyPw(MemberDTO dto);
 }

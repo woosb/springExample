@@ -42,4 +42,16 @@ public class MemberDAO {
 	public List<UserLogDTO> getLog(){
 		return sqlSession.selectList(namespace+".getLog");
 	}
+	
+	public int modifyPw(MemberDTO dto) {
+		return sqlSession.update(namespace+".modifyPw", dto);
+	}
+	
+	public Integer getLogCount() {
+		return sqlSession.selectOne(namespace+".getLogCount");
+	}
+	
+	public List<Integer> getSecWithMin(String min) {
+		return sqlSession.selectList(namespace+".getSecWithMin", min);
+	}
 }
